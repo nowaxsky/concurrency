@@ -1,9 +1,7 @@
-# Lesson 6 - Thread Method Example
+# Appendix - Synchronization
 
-http://larry850806.github.io/2016/06/10/Java-Thread/
-https://www.baeldung.com/java-concurrency
-https://blog.csdn.net/Evankaka/article/details/44153709
-https://blog.csdn.net/evankaka/article/details/51489322
+https://blog.csdn.net/zhangqiluGrubby/article/details/80500505
+https://www.jackforfun.com/java-synchronized
 
 1. SleepDemo
 	* sleep(long millis)在指定的毫秒数内让当前正在执行的线程休眠(暂停执行).
@@ -23,6 +21,5 @@ https://blog.csdn.net/evankaka/article/details/51489322
 	* interrupt()線程發送一個中斷信號，讓線程在等待時(如死鎖時)能拋出InterruptedException
 	* __注意: 這個方法不能中斷線程! 只是在等待的地方拋出錯誤, 之後繼續執行該線程.__
 1. WaitAndNotifyDemo
-	* https://www.programcreek.com/2009/02/notify-and-wait-example/
+	* https://www.journaldev.com/1037/java-thread-wait-notify-and-notifyall-example#notifyall
 	* 
-1. 线程唤醒：Object类中的notify()方法，唤醒在此对象监视器上等待的单个线程。如果所有线程都在此对象上等待，则会选择唤醒其中一个线程。选择是任意性的，并在对实现做出决定时发生。线程通过调用其中一个 wait 方法，在对象的监视器上等待。 直到当前的线程放弃此对象上的锁定，才能继续执行被唤醒的线程。被唤醒的线程将以常规方式与在该对象上主动同步的其他所有线程进行竞争；例如，唤醒的线程在作为锁定此对象的下一个线程方面没有可靠的特权或劣势。类似的方法还有一个notifyAll()，唤醒在此对象监视器上等待的所有线程。注意：Thread中suspend()和resume()两个方法在JDK1.5中已经废除，不再介绍。因为有死锁倾向。

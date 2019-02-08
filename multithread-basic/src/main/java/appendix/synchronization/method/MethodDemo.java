@@ -1,9 +1,9 @@
-package appendix.synchronization.block;
+package appendix.synchronization.method;
 
-public class CodeBlockDemo3 {
+public class MethodDemo {
 
   public static void main(String[] args) {
-    ThreadSyn2 thread = new ThreadSyn2();
+    ThreadSyn thread = new ThreadSyn();
     Thread thread1 = new Thread(thread, "A");
     Thread thread2 = new Thread(thread, "B");
     thread1.start();

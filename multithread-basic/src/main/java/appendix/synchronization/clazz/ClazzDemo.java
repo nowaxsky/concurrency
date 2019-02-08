@@ -1,6 +1,6 @@
-package appendix.synchronization.block;
+package appendix.synchronization.clazz;
 
-public class CodeBlockDemo2 {
+public class ClazzDemo {
 
   public static void main(String[] args) {
     ThreadSyn threadA = new ThreadSyn();

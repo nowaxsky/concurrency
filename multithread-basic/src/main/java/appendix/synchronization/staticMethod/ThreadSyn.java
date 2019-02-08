@@ -1,11 +1,15 @@
-package appendix.synchronization.method;
+package appendix.synchronization.staticMethod;
 
 public class ThreadSyn implements Runnable {
 
-  private int count = 0;
+  private static int count = 0;
 
   @Override
-  public synchronized void run() {
+  public void run() {
+    method();
+  }
+  
+  public static synchronized void method() {
     for (int i = 0; i < 5; i++) {
       try {
         System.out.println(Thread.currentThread().getName() + ":" + (count++));

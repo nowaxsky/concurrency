@@ -1,6 +1,6 @@
-package appendix.synchronization.block;
+package appendix.synchronization.staticMethod;
 
-public class CodeBlockDemo2 {
+public class StaticMethodDemo {
 
   public static void main(String[] args) {
     ThreadSyn threadA = new ThreadSyn();

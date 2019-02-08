@@ -1,4 +1,4 @@
-package appendix.synchronization.block;
+package appendix.synchronization.clazz;
 
 public class ThreadSyn implements Runnable {
 
@@ -6,7 +6,11 @@ public class ThreadSyn implements Runnable {
 
   @Override
   public void run() {
-    synchronized (this) {
+    method();
+  }
+
+  public void method() {
+    synchronized (ThreadSyn.class) {
       for (int i = 0; i < 5; i++) {
         try {
           System.out.println(Thread.currentThread().getName() + ":" + (count++));
@@ -16,5 +20,6 @@ public class ThreadSyn implements Runnable {
         }
       }
     }
+
   }
 }

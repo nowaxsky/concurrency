@@ -1,25 +1,27 @@
 # Appendix - Synchronization
 
-https://blog.csdn.net/zhangqiluGrubby/article/details/80500505
+https://blog.csdn.net/zhangqiluGrubby/article/details/80500505<br>
 https://www.jackforfun.com/java-synchronized
 
-1. SleepDemo
-	* sleep(long millis)在指定的毫秒数内让当前正在执行的线程休眠(暂停执行).
-	* sleep是讓當前的thread暫停工作, 呼叫繼承Thread的類別的sleep也只能暫停"當前"的執行緒
-1. JoinDemo
-	* threadB.join()意思為等待B執行緒完成後該程式才會繼續執行, 是主執行緒等待子執行緒的方法.
-	* 在很多情况下如果子线程里要进行大量的耗时的运算, 主线程往往将于子线程之前结束, 但是如果主线程处理完其他的事务后需要用到子线程的处理结果, 即主线程需要等待子线程执行完成之后再结束, 这个时候就要用到join()方法了.
-1. YieldDemo
-	* yield()暂停当前正在执行的线程对象, 把执行机会让给相同或者更高优先级的线程.
-	* yield是让当前运行线程回到可运行状态, 所以無法保證yield()达到让步目的, 因为让步的线程还有可能被线程调度程序再次选中.
-	* __yield从未导致线程转到等待/睡眠/阻塞状态, 在大多数情况下yield将导致线程从运行状态转到可运行状态, 但有可能没有效果.__
-	* yield不會讓給優先級比自己低的執行緒執行, 且讓出的時間不可控(因為只是回到可運行狀態, 和sleep下的不可運行狀態不同).
-1. PriorityDemo 
-	* setPriority可以設定 1~10, 預設值是5, 數字越大優先權越高.
-	* 優先權低不代表一定比較晚執行, 只是代表他們同時競爭相同資源時, 會先給優先權大的.
-1. InterruptDemo
-	* interrupt()線程發送一個中斷信號，讓線程在等待時(如死鎖時)能拋出InterruptedException
-	* __注意: 這個方法不能中斷線程! 只是在等待的地方拋出錯誤, 之後繼續執行該線程.__
-1. WaitAndNotifyDemo
-	* https://www.journaldev.com/1037/java-thread-wait-notify-and-notifyall-example#notifyall
-	* 
+## Synchronized 修飾對象
+#### 1. 修饰一个代码块, 被修饰的代码块称为同步语句块, 其作用的范围是大括号{}括起来的代码, 作用的对象是调用这个代码块的对象.
+#### 2. 修饰一个方法, 被修饰的方法称为同步方法, 其作用的范围是整个方法, 作用的对象是调用这个方法的对象.
+#### 3. 修饰一个静态的方法, 其作用的范围是整个静态方法, 作用的对象是这个类的所有对象.
+#### 4. 修饰一个类, 其作用的范围是synchronized后面括号括起来的部分, 作用主的对象是这个类的所有对象. 
+
+1. CodeBlockDemo
+	* 当两个并发线程(thread1和thread2)访问同一个对象(这个很重要)(ThreadSyn)中的synchronized代码块时, 在同一时刻只能有一个线程得到执行, 另一个线程受阻塞, 必须等待当前线程执行完这个代码块以后才能执行该代码块. Thread1和thread2是互斥的, 因为在执行synchronized代码块时会锁定当前的对象, 只有执行完该代码块才能释放该对象锁, 下一个线程才能执行并锁定该对象, 一个对象就一个锁.
+	* __注意: 因為是同一物件, 所以count不斷疊加__
+1. CodeBlockDemo2
+	* 当多个线程访问 不同对象 的同步代码块, 线程访问各自同步代码块, 线程不会阻塞, 互不干扰.
+	* __注意: 不同物件, 所以count不會疊加__
+1. CodeBlockDemo3
+	* 訪問synchronized之外的代碼不受影響.
+1. ThreadSyn3
+	* 当没有明确的对象作为锁, 只是想让一段代码同步时, 可以创建一个特殊的对象(byte[] lock)来充当锁.
+1. CodeBlockDemo4
+	* 使用外來的物件當作鎖, 證明下列事實: __synchronized(a)是鎖住物件a, 如果有其他的synchronized要使用物件a是不行的__.
+	
+## 總結: synchronized(a){}
+#### 1. 鎖住該段程式碼, 直到物件a釋放鎖.
+#### 2. 鎖住物件a, 其他synchronized要使用物件a是不行的.

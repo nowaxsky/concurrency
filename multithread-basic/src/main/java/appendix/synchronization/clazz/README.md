@@ -1,7 +1,6 @@
 # Appendix - Synchronization
 
 https://blog.csdn.net/zhangqiluGrubby/article/details/80500505<br>
-https://www.jackforfun.com/java-synchronized
 
 ## Synchronized 修飾對象
 #### 1. 修饰一个代码块, 被修饰的代码块称为同步语句块, 其作用的范围是大括号{}括起来的代码, 作用的对象是调用这个代码块的对象.
@@ -9,6 +8,7 @@ https://www.jackforfun.com/java-synchronized
 #### 3. 修饰一个静态的方法, 其作用的范围是整个静态方法, 作用的对象是这个类的所有对象.
 #### 4. 修饰一个类, 其作用的范围是synchronized后面括号括起来的部分, 作用主的对象是这个类的所有对象. 
 
+## Demo
 1. StaticMethodDemo
 	* synchronized作用于一个类时, 是给这个类加锁, 这个类的所有对象用的是同一把锁.
 

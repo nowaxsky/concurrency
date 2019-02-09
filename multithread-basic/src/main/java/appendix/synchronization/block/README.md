@@ -23,5 +23,5 @@ https://blog.csdn.net/zhangqiluGrubby/article/details/80500505<br>
 	* 使用外來的物件當作鎖, 證明下列事實: __synchronized(a)是鎖住物件a, 如果有其他的synchronized要使用物件a是不行的__.
 	
 ## 總結: synchronized(a){}
-#### 1. 鎖住該段程式碼, 直到物件a釋放鎖.
-#### 2. 鎖住物件a, 其他synchronized要使用物件a是不行的.
+#### 1. 物件a取得這段程式碼的鎖, 而這段同步區塊只有一個鎖, 唯有獲得鎖的物件有權利執行.
+#### 2. 一個物件只能取得一個鎖, 所以物件a獲得一個鎖時無法再拜訪其他同步區塊. 

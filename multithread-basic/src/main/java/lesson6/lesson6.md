@@ -1,6 +1,5 @@
 # Lesson 6 - Thread Method Example
 
-http://larry850806.github.io/2016/06/10/Java-Thread/
 https://www.baeldung.com/java-concurrency
 https://blog.csdn.net/Evankaka/article/details/44153709
 https://blog.csdn.net/evankaka/article/details/51489322
@@ -22,7 +21,32 @@ https://blog.csdn.net/evankaka/article/details/51489322
 1. InterruptDemo
 	* interrupt()線程發送一個中斷信號，讓線程在等待時(如死鎖時)能拋出InterruptedException
 	* __注意: 這個方法不能中斷線程! 只是在等待的地方拋出錯誤, 之後繼續執行該線程.__
+	* InterruptedException是线程自己从内部抛出的, 并不是interrupt()方法抛出的. 
+	* __对某一线程调用 interrupt()时, 如果该线程正在执行普通的代码, 那么该线程根本就不会抛出InterruptedException. 但是该线程进入到 wait()/sleep()/join()后, 就会立刻抛出InterruptedException.__ 
 1. WaitAndNotifyDemo
 	* https://www.programcreek.com/2009/02/notify-and-wait-example/
-	* 
-1. 线程唤醒：Object类中的notify()方法，唤醒在此对象监视器上等待的单个线程。如果所有线程都在此对象上等待，则会选择唤醒其中一个线程。选择是任意性的，并在对实现做出决定时发生。线程通过调用其中一个 wait 方法，在对象的监视器上等待。 直到当前的线程放弃此对象上的锁定，才能继续执行被唤醒的线程。被唤醒的线程将以常规方式与在该对象上主动同步的其他所有线程进行竞争；例如，唤醒的线程在作为锁定此对象的下一个线程方面没有可靠的特权或劣势。类似的方法还有一个notifyAll()，唤醒在此对象监视器上等待的所有线程。注意：Thread中suspend()和resume()两个方法在JDK1.5中已经废除，不再介绍。因为有死锁倾向。
+	* https://www.journaldev.com/1037/java-thread-wait-notify-and-notifyall-example
+	* wait,与notify是针对已经获取了Obj锁进行操作, 从语法角度来说就是Obj.wait(), Obj.notify必须在synchronized(Obj){...}语句块内.
+	* 从功能上来说wait就是说线程在获取对象锁后, 主动释放对象锁, 同时本线程休眠. 直到有其它线程调用对象的notify()唤醒该线程, 才能继续获取对象锁并继续执行. 
+	* 的notify()就是对对象锁的唤醒操作. 但有一点需要注意的是notify()调用后, 并不是马上就释放对象锁的, 而是在相应的synchronized(){}语句块执行结束, 自动释放锁后, JVM会在wait()对象锁的线程中随机选取一线程, 赋予其对象锁, 唤醒线程, 继续执行. 
+	* Thread.sleep()与Object.wait()二者都可以暂停当前线程, 释放CPU控制权, 主要的区别在于Object.wait()在释放CPU同时, 释放了对象锁的控制.
+	* 本例中Waiter1和Waiter2取得message物件者才能執行同步區塊內的程式碼, 假設Waiter1先搶到, 直到呼叫wait()時釋放CPU才輪到Waiter2呼叫.
+	* Notifier代碼中故意先睡一秒, 若無等待直接進入同步區塊, 有可能造成死鎖(若Notifier不是最後一個取得物件鎖, 則最後一個取得物件鎖的Waiter無法喚醒).
+	* 當Waiter1和Waiter2都在wait過1秒後, Notifier取得物件鎖, 並喚醒其中一個等待的線程(有可能是Waiter1或Waiter2).
+	* __注意: 由console可以看出有印出notifier stopped字樣, 代表呼叫notify()並不會立刻喚醒線程, 而是要整個同步區塊執行完才會釋放物件鎖並喚醒線程!__
+	* 另一個沒有被喚醒的Waiter則會永遠等待, 請記得terminate!
+1. WaitAndNotifyDemo2
+	* notifyAll()可以喚醒所有線程, 但有物件鎖的關係, 所以由搶到物件鎖的Waiter先執行.
+	* 假設由Waiter1先搶到喚醒的物件鎖, 則Waiter2會在Waiter1執行完成後獲得物件鎖並執行, 最後所有線程均完成.
+1. wait和sleep区别
+	* 共同點
+		1. 他们都是在多线程的环境下, 都可以在程序的调用处阻塞指定的毫秒数, 并返回. 
+		2. wait()和sleep()都可以通过interrupt()方法 打断线程的暂停状态 , 从而使线程立刻抛出InterruptedException.
+	* 不同點
+		1. Thread类的方法：sleep(),yield()等 ; Object的方法：wait()和notify()等.
+		2. __sleep方法没有释放锁, 而wait方法释放了锁__, 使得其他线程可以使用同步控制块或者方法. 
+		3. wait, notify和notifyAll只能在同步控制方法或者同步控制块里面使用, 而sleep可以在任何地方使用.
+	* 總結
+		1. sleep()和wait()方法的最大区别是: __sleep()睡眠时, 保持对象锁, 仍然占有该锁; 而wait()睡眠时, 释放对象锁.__
+		1. wait()和sleep()都可以通过interrupt()方法打断线程的暂停状态, 从而使线程立刻抛出InterruptedException(但不建议使用该方法).
+		 

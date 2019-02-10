@@ -1,13 +1,12 @@
 package appendix.callback.asynchronous;
 
-public class Demo1 {
+public class Demo2 {
 
   public static void main(String[] args) {
-    
-    Li li = new Li();
-    Wang wang = new Wang(li);
-
-    // 小王問小李問題
-    wang.askQuestion("1 + 1 = ?");
+    CallBackClass callBack = new CallBackClass();
+    Listener listener = new EventListener();
+    callBack.registerEventListener(listener);
+    callBack.doStuff();
   }
+
 }

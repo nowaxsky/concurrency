@@ -1,4 +1,4 @@
-package lesson6;
+package thread.util;
 
 import java.util.Date;
 

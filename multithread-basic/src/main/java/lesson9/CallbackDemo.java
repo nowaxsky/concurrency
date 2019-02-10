@@ -4,7 +4,7 @@ public class CallbackDemo {
 
   public static void main(String[] args) {
     Work work = new Work();
-    Thread thread = new Thread3(work);
+    Thread thread = new CallBackThread(work);
     thread.start();
     System.out.println(work.getData());
     try {

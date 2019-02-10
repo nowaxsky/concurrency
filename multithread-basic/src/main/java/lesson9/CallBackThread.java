@@ -2,11 +2,11 @@ package lesson9;
 
 import java.util.Random;
 
-public class Thread3 extends Thread {
+public class CallBackThread extends Thread {
 
   private Work work;
 
-  public Thread3(Work work) {
+  public CallBackThread(Work work) {
     this.work = work;
   }
 

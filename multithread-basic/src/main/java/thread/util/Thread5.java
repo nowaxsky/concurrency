@@ -1,10 +1,10 @@
-package lesson9;
+package thread.util;
 
-public class Thread1 extends Thread {
+public class Thread5 extends Thread {
 
   private String name;
 
-  public Thread1(String name) {
+  public Thread5(String name) {
     this.name = name;
   }
 

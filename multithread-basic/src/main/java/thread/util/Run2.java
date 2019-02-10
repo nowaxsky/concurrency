@@ -1,6 +1,6 @@
-package lesson9;
+package thread.util;
 
-public class Thread2 implements Runnable {
+public class Run2 implements Runnable {
 
   private String name;
 

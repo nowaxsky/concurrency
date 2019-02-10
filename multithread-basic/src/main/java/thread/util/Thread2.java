@@ -1,12 +1,12 @@
-package lesson6;
+package thread.util;
 
 import java.util.Date;
 
-public class Thread1 extends Thread {
+public class Thread2 extends Thread {
   
   private String name;
 
-  public Thread1(String name) {
+  public Thread2(String name) {
     this.name = name;
   }
 

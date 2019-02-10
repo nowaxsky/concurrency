@@ -1,4 +1,4 @@
-package lesson6;
+package thread.util;
 
 public class Thread3 extends Thread {
 

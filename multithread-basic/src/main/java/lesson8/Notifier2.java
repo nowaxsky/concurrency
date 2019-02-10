@@ -1,4 +1,4 @@
-package lesson6;
+package lesson8;
 
 public class Notifier2 implements Runnable {
 

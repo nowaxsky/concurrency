@@ -1,5 +1,7 @@
 package lesson6;
 
+import thread.util.Thread3;
+
 public class YieldDemo {
 
   public static void main(String[] args) {

@@ -1,11 +1,13 @@
-package lesson6;
+package lesson5;
+
+import thread.util.Thread1;
 
 public class JoinDemo {
 
   public static void main(String[] args) {
     System.out.println(Thread.currentThread().getName().toUpperCase() + " thread starts!");
-    Thread2 threadA = new Thread2("A");
-    Thread2 threadB = new Thread2("B");
+    Thread1 threadA = new Thread1("A");
+    Thread1 threadB = new Thread1("B");
 
     threadB.start();
     try {

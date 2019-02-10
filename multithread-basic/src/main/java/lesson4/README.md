@@ -1,4 +1,4 @@
-# Lesson 3 - Thread Priority
+# Lesson 4 - Thread Sleep
 
 ## Thread Status
 
@@ -27,3 +27,7 @@
 	* JVM提供了10个线程优先级，但与常见的操作系统都不能很好的映射。如果希望程序能移植到各个操作系统中，应该仅仅使用Thread类有以下三个静态常量作为优先级，这样能保证同样的优先级采用了同样的调度方式。
 	* setPriority可以設定 1~10, 預設值是5, 數字越大優先權越高.
 	* 優先權低不代表一定比較晚執行, 只是代表他們同時競爭相同資源時, 會先給優先權大的.
+1. 线程睡眠:
+	* Thread.sleep(long millis)方法，使线程转到阻塞状态。millis参数设定睡眠的时间，以毫秒为单位。当睡眠结束后，就转为就绪（Runnable）状态。sleep()平台移植性好。
+	* sleep(long millis)在指定的毫秒数内让当前正在执行的线程休眠(暂停执行).
+	* sleep是讓當前的thread暫停工作, 呼叫繼承Thread的類別的sleep也只能暫停"當前"的執行緒

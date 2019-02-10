@@ -1,4 +1,6 @@
-package lesson6;
+package lesson7;
+
+import thread.util.Thread4;
 
 public class InterruptDemo {
 

@@ -1,12 +1,14 @@
-package lesson6;
+package lesson3;
+
+import thread.util.Thread2;
 
 public class PriorityDemo {
   public static void main(String[] args) {
-    Thread1 threadA = new Thread1("A");
-    Thread1 threadB = new Thread1("B");
-    Thread1 threadC = new Thread1("C");
-    Thread1 threadD = new Thread1("D");
-    Thread1 threadE = new Thread1("E");
+    Thread2 threadA = new Thread2("A");
+    Thread2 threadB = new Thread2("B");
+    Thread2 threadC = new Thread2("C");
+    Thread2 threadD = new Thread2("D");
+    Thread2 threadE = new Thread2("E");
 
     threadA.setPriority(Thread.MIN_PRIORITY); // 1
     threadB.setPriority(2);

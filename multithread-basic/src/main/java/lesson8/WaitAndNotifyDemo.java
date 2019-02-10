@@ -1,4 +1,4 @@
-package lesson6;
+package lesson8;
 
 public class WaitAndNotifyDemo {
 

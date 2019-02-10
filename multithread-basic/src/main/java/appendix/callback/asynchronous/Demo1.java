@@ -1,6 +1,6 @@
 package appendix.callback.asynchronous;
 
-public class Demo2 {
+public class Demo1 {
 
   public static void main(String[] args) {
     CallBackClass callBack = new CallBackClass();
